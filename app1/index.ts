@@ -1,1 +1,3 @@
-console.log("Hello from App1!");
+class MyClassWithProperties {
+  private message = "Hello from a class!";
+}

@@ -1,17 +1,16 @@
 {
-    "name": "parcel2-monorepo-babel-bug-app1",
-    "description": "A demonstration of a bug in parcel2 where .babelrc files are not detected for monorepo packages.",
-    "repository": "https://github.com/astegmaier/parcel2-monorepo-babel-bug.git",  
-    "author": "Andrew Stegmaier <ansteg@microsoft.com>",
-    "license": "MIT",
-    "private": true,
-    "workspaces": [
-        "app1",
-        "app2"
-    ],
-    "scripts": {
-        "build:app1": "yarn workspace app1 run build",
-        "build:app2": "yarn workspace app1 run build"
-    }
+  "name": "parcel2-monorepo-babel-bug-app1",
+  "description": "A demonstration of a bug in parcel2 where .babelrc files are not detected for monorepo packages.",
+  "repository": "https://github.com/astegmaier/parcel2-monorepo-babel-bug.git",
+  "author": "Andrew Stegmaier <ansteg@microsoft.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "app1",
+    "app2"
+  ],
+  "scripts": {
+    "build:app1": "yarn workspace app1 run build",
+    "build:app2": "yarn workspace app2 run build"
+  }
 }
-  
