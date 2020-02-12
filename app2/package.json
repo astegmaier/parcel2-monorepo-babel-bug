@@ -7,6 +7,6 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "build": "parcel build index.ts"
+    "build": "parcel build src/index.ts"
   }
 }
