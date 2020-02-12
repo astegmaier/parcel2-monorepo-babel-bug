@@ -1,0 +1,22 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Parcel Building App 1",
+      "program": "${workspaceFolder}/node_modules/parcel/lib/bin.js",
+      "runtimeArgs": ["--preserve-symlinks"],
+      "env": {
+        "PARCEL_WORKERS": "0"
+      },
+      "cwd": "${workspaceFolder}/app1",
+      "args": ["build", "${workspaceFolder}/app1/index.ts", "--no-cache"],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}
