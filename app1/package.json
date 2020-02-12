@@ -1,0 +1,12 @@
+{
+  "name": "app1",
+  "private": true,
+  "version": "1.0.0",
+  "devDependencies": {
+    "parcel": "^2.0.0-nightly.99",
+    "typescript": "^3.7.5"
+  },
+  "scripts": {
+    "build": "parcel build index.ts"
+  }
+}
