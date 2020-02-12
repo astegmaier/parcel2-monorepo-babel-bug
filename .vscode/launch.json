@@ -7,14 +7,13 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Parcel Building App 1",
+      "name": "Debug Parcel Build",
       "program": "${workspaceFolder}/node_modules/parcel/lib/bin.js",
       "runtimeArgs": ["--preserve-symlinks"],
       "env": {
         "PARCEL_WORKERS": "0"
       },
-      "cwd": "${workspaceFolder}/app1",
-      "args": ["build", "${workspaceFolder}/app1/index.ts", "--no-cache"],
+      "args": ["build", "${workspaceFolder}/src/index.ts", "--no-cache"],
       "console": "integratedTerminal",
       "skipFiles": ["<node_internals>/**"]
     }
