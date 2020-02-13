@@ -3,24 +3,25 @@
 Parcel picks up `.babelrc`, `babel.config.json` and `package.json` babel configurations in monorepos in a way that...
 
 1. ...mirrors (as closely as possible) the way that the latest `babel-cli` works, so that users can apply their existing expectations to parcel with as few "gotchas" as possible.
-2. ...does not add unecessary, babel-specific configuration flags to parcel that are only used to tell it where to look for babel configuration (i.e. unlike the `babel-cli`, parcel shouldn't burden the user with specifying things like [`rootMode`](https://babeljs.io/docs/en/config-files#root-babelconfigjson-file)).
+2. ...does not add unnecessary, babel-specific configuration flags to parcel that are only used to tell it where to look for babel configuration (i.e. unlike the `babel-cli`, parcel (ideally) shouldn't burden the user with specifying things like [`rootMode`](https://babeljs.io/docs/en/config-files#root-babelconfigjson-file)).
 
 ## Monorepo scenarios
 
 The table below outlines current `babel` and `parcel2` behavior in different scenarios, along with a proposal about how the behavior should change.
 
-| Config at root      | Config in subproject | `babel-cli` result (running from root) | `babel-cli` result (running from subproject) | Current `parcel` result | Desired `parcel` result\*\* |
-| ------------------- | -------------------- | -------------------------------------- | -------------------------------------------- | ----------------------- | --------------------------- |
-| nothing             | `.babelrc`\*         | Subproject config respected            | TBD                                          | TBD                     | TBD                         |
-| nothing             | `babel.config.json`  | Subproject config ignored              | Subproject config respected                  | TBD                     | TBD                         |
-| `.babelrc` \*       | nothing              | Root project config ignored            | TBD                                          | TBD                     | TBD                         |
-| `.babelrc` \*       | `.babelrc` \*        | TBD                                    | TBD                                          | TBD                     | TBD                         |
-| `.babelrc` \*       | `babel.config.json`  | TBD                                    | TBD                                          | TBD                     | TBD                         |
-| `babel.config.json` | nothing              | TBD                                    | TBD                                          | TBD                     | TBD                         |
-| `babel.config.json` | `.babelrc`\*         | TBD                                    | TBD                                          | TBD                     | TBD                         |
-| `babel.config.json` | `babel.config.json`  | TBD                                    | TBD                                          | TBD                     | TBD                         |
+| Config at root      | Config in subproject | `babel-cli` result (running from root) | `babel-cli` result (running from subproject with no special options) | Current `parcel` result (as of `2.0.0-nightly.99`) | Proposed changes to `parcel` result\*\* | Notes                                                                                                                                                                                                                                        |
+| ------------------- | -------------------- | -------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| nothing             | `.babelrc`\*         | config ignored                         | config respected                                                     | config **ignored**                                 | config **respected**                    | Babel documentation [recommends](https://babeljs.io/docs/en/config-files#subpackage-babelrcjson-files) setting [`babelrcRoots`](https://babeljs.io/docs/en/options#babelrcroots) to enable detection when running `babel-cli` from the root. |
+| nothing             | `babel.config.json`  | config ignored                         | config respected                                                     | config **ignored**                                 | config **respected**                    |
+| `.babelrc` \*       | nothing              | config ignored                         | config ignored                                                       | config ignored                                     | -                                       | This is not expected to work, because babel will stop looking for `.babelrc` files as it travels up the directory and discovers the sub-package's `package.json` file, but no `.babelrc` file near it.                                       |
+| `.babelrc` \*       | `.babelrc` \*        | TBD                                    | TBD                                                                  | TBD                                                | TBD                                     |
+| `.babelrc` \*       | `babel.config.json`  | TBD                                    | TBD                                                                  | TBD                                                | TBD                                     |
+| `babel.config.json` | nothing              | config respected                       | config ignored                                                       | config respected                                   | -                                       | Babel documentation [recommends](https://babeljs.io/docs/en/config-files#root-babelconfigjson-file) setting `--rootMode upward` to enable detection when running `babel-cli` from the subproject.                                            |
+| `babel.config.json` | `.babelrc`\*         | TBD                                    | TBD                                                                  | TBD                                                | TBD                                     |
+| `babel.config.json` | `babel.config.json`  | TBD                                    | TBD                                                                  | TBD                                                | TBD                                     |
 
 \* or `package.json` with a `babel` property (i.e. a file-relative configuration).
+
 \*\* Ideally, we could deliver the same (predictable) result whether `parcel` was run at the project root or in a sub-package.
 
 ## Background Information
