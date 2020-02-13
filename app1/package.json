@@ -9,6 +9,6 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "build": "parcel build src/index.ts"
+    "build": "parcel build src/index.ts --no-cache"
   }
 }
