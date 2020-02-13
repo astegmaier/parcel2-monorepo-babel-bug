@@ -13,7 +13,6 @@
       "env": {
         "PARCEL_WORKERS": "0"
       },
-      "cwd": "${workspaceFolder}/app1",
       "args": ["build", "${workspaceFolder}/app1/src/index.ts", "--no-cache"],
       "console": "integratedTerminal",
       "skipFiles": ["<node_internals>/**"]

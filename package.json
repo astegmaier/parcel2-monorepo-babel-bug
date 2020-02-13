@@ -10,7 +10,9 @@
     "app2"
   ],
   "scripts": {
-    "build:app1": "yarn workspace app1 run build",
+    "app1:parcel": "yarn workspace app1 run parcel",
+    "app1:babel:indirect": "yarn workspace app1 run babel",
+    "app1:babel:direct": "babel app1/src --extensions \".ts\" -d app1/dist",
     "build:app2": "yarn workspace app2 run build"
   }
 }
