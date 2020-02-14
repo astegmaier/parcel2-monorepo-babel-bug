@@ -1,7 +1,7 @@
 class MyClassWithProperties {
   message = "Hello from a class!";
   sayHello() {
-    console.log(this.message ?? "backup message");
+    console.log(this.message);
   }
   renderHello() {
     return <div>{this.message}</div>;
