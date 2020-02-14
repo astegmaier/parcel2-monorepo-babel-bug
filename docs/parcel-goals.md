@@ -1,13 +1,15 @@
-This repo was set up to provide a testing environment to explore [an issue](https://github.com/parcel-bundler/parcel/issues/4120) with the way Parcel2 picks up babel configuration. Below is a detailed proposal for how to fix this issue.
+## The Original Issue
 
-## Goal
+Parcel2 does not respect configuration from `.babelrc` files in monorepo sub-packages. See [Parcel issue #4120](https://github.com/parcel-bundler/parcel/issues/4120) and [the readme of this repository](/astegmaier/parcel2-monorepo-babel-bug/blob/master/README.md) for details about how to reproduce.
+
+## Solution Goals
 
 Allow parcel2 to pick up `.babelrc`, `babel.config.json` and `package.json` babel configurations in monorepos in a way that...
 
 1. ...mirrors (as closely as possible) the way that the latest `babel-cli` works, so that users can apply their existing expectations to parcel with as few "gotchas" as possible.
 2. ...does not add unnecessary, babel-specific configuration flags to parcel that are only used to tell it where to look for babel configuration (i.e. unlike the `babel-cli`, parcel (ideally) shouldn't burden the user with specifying things like [`rootMode`](https://babeljs.io/docs/en/config-files#root-babelconfigjson-file) or [`babelrcRoots`](https://babeljs.io/docs/en/options#babelrcroots)).
 
-## Monorepo Scenarios
+## Solution Scenarios
 
 The table below outlines current `babel` and `parcel2` behavior in different scenarios within a monorepo, along with a proposal about how the behavior should be fixed.
 
