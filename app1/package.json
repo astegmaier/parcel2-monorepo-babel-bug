@@ -12,6 +12,6 @@
   },
   "scripts": {
     "parcel": "parcel build src/index.ts --no-cache",
-    "babel": "babel src --extensions \".ts\" -d  dist"
+    "babel": "babel src --extensions \".ts\" -d dist"
   }
 }
