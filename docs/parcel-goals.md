@@ -1,3 +1,5 @@
+This repo was set up to provide a testing environment to explore [an issue](https://github.com/parcel-bundler/parcel/issues/4120) with the way Parcel2 picks up babel configuration. Below is a detailed proposal for how to fix this issue.
+
 ## Goal
 
 Allow parcel2 to pick up `.babelrc`, `babel.config.json` and `package.json` babel configurations in monorepos in a way that...
