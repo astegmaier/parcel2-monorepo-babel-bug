@@ -10,7 +10,8 @@
     "app2"
   ],
   "scripts": {
-    "app1:parcel": "yarn workspace app1 run parcel",
+    "app1:parcel:indirect": "yarn workspace app1 run parcel",
+    "app1:parcel:direct": "parcel build app1/src/index.js --no-cache",
     "app1:babel:indirect": "yarn workspace app1 run babel",
     "app1:babel:direct": "babel app1/src -d app1/dist",
     "build:app2": "yarn workspace app2 run build"
