@@ -34,7 +34,7 @@ Below are key snippets from the [babel documentation](https://babeljs.io/docs/en
 
 ### Configuration File Types
 
-> https://babeljs.io/docs/en/config-files#configuration-file-types
+> [https://babeljs.io/docs/en/config-files#configuration-file-types](https://babeljs.io/docs/en/config-files#configuration-file-types)
 >
 > Babel has two parallel config file formats, which can be used together, or independently.
 >
@@ -46,7 +46,7 @@ Below are key snippets from the [babel documentation](https://babeljs.io/docs/en
 
 ### Gotchas with "file-relative" configuration
 
-> https://babeljs.io/docs/en/config-files#file-relative-configuration
+> [https://babeljs.io/docs/en/config-files#file-relative-configuration](https://babeljs.io/docs/en/config-files#file-relative-configuration)
 >
 > Babel loads `.babelrc.json` files, or an equivalent one using the supported extensions, by searching up the directory structure starting from the "filename" being compiled (limited by the caveats below). This can be powerful because it allows you to create independent configurations for subsections of a package. File-relative configurations are also merged over top of project-wide config values, making them potentially useful for specific overrides, though that can also be accomplished through "overrides".
 >
@@ -62,7 +62,7 @@ Below are key snippets from the [babel documentation](https://babeljs.io/docs/en
 
 ### Advice for monorepos
 
-> https://babeljs.io/docs/en/config-files#monorepos
+> [https://babeljs.io/docs/en/config-files#monorepos](https://babeljs.io/docs/en/config-files#monorepos)
 >
 > With monorepo setups, the core thing to understand is that Babel treats your working directory as its logical "root", which causes problems if you want to run Babel tools within a specific sub-package without having Babel apply to the repo as a whole.
 >
