@@ -56,8 +56,56 @@ Below are key snippets from the [babel documentation](https://babeljs.io/docs/en
 > - `.babelrc.json` files only apply to files within their own package
 > - `.babelrc.json` files in packages that aren't Babel's 'root' are ignored unless you opt in with "babelrcRoots".
 
-> https://babeljs.io/docs/en/config-files#root-babelconfigjson-file
+### Advice for monorepos
+
+> https://babeljs.io/docs/en/config-files#monorepos
+>
+> With monorepo setups, the core thing to understand is that Babel treats your working directory as its logical "root", which causes problems if you want to run Babel tools within a specific sub-package without having Babel apply to the repo as a whole.
+>
+> Separately, it is also important to decide if you want to use `.babelrc.json` files or just a central `babel.config.json`. `.babelrc.json` files are not required for subfolder-specific configuration like they were in Babel 6, so often they are not needed in Babel 7, in favor of `babel.config.json`.
+>
+> ### Root babel.config.json file
 >
 > You can often place all of your repo configuration in the root `babel.config.json.` With "overrides", you can easily specify configuration that only applies to certain subfolders of your repository, which can often be easier to follow than creating many .babelrc.json files across the repo.
 >
 > The first issue you'll likely run into is that by default, Babel expects to load babel.config.json files from the directory set as its "root", which means that if you create a babel.config.json, but run Babel inside an individual package, e.g.
+>
+> ```
+> cd packages/some-package;
+> babel src -d dist
+> ```
+>
+> the "root" Babel is using in that context is not your monorepo root, and it won't be able to find the babel.config.json file.
+>
+> If all of your build scripts run relative to your repository root, things should already work, but if you are running your Babel compilation process from within a subpackage, you need to tell Babel where to look for the config. There are a few ways to do that, but the recommended way is the "rootMode" option with "upward", which will make Babel search from the working directory upward looking for your `babel.config.json` file, and will use its location as the "root" value.
+>
+> ...
+>
+> ### Subpackage .babelrc.json files
+>
+> Similar to the the way babel.config.json files are required to be in the "root", .babelrc.json files must be in the root package, by default. This means that, the same way the working directory affects babel.config.json loading, it also affects .babelrc.json loading.
+>
+> Assuming you've already gotten your babel.config.json file loaded properly as discussed above, Babel will only process .babelrc.json files inside that root package (and not subpackages), so given for instance
+>
+> ```
+> package.json
+> babel.config.js
+> packages/
+>   mod/
+>    package.json
+>    .babelrc.json
+>    index.js
+> ```
+>
+> compiling the packages/mod/index.js file will not load packages/mod/.babelrc.json because this .babelrc.json is within a sub-package, not the root package.
+>
+> To enable processing of that .babelrc.json, you will want to use the "babelrcRoots" option from inside your babel.config.json file to do
+>
+> ```
+> babelrcRoots: [
+>   ".",
+>   "packages/*",
+> ],
+> ```
+>
+> so that Babel will consider all packages/\* packages as allowed to load .babelrc.json files, along with the original repo root.
