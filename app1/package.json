@@ -6,12 +6,12 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-typescript": "^7.8.3",
+    "@babel/plugin-transform-react-jsx": "^7.8.3",
     "parcel": "^2.0.0-nightly.99",
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "parcel": "parcel build src/index.ts --no-cache",
-    "babel": "babel src --extensions \".ts\" -d dist"
+    "parcel": "parcel build src/index.js --no-cache",
+    "babel": "babel src -d dist"
   }
 }
