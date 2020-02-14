@@ -31,4 +31,4 @@ A demonstration of [an issue](https://github.com/parcel-bundler/parcel/issues/41
 
 ## Proposed solution
 
-See [parcel-goals.md](parcel-goals.md) for a proposal about what the behavior of parcel should be.
+See [parcel-goals.md](docs/parcel-goals.md) for a proposal about what the behavior of parcel should be.
